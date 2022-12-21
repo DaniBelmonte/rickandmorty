@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Rick_Morty" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BlB-Kp-rct">
+                                <rect key="frame" x="16" y="164" width="382" height="666"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="xr0-HM-S39">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="4"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xuP-tR-ysb">
+                                    <rect key="frame" x="0.0" y="0.0" width="382" height="4"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionReusableView>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rick &amp; Morty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qk4-dB-mHD">
+                                <rect key="frame" x="152" y="60" width="110.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="nue-Zu-xOt">
+                                <rect key="frame" x="0.0" y="97" width="414" height="51"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dw8-gk-Ob8" customClass="LottieAnimationView" customModule="Lottie">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="Rick"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Qk4-dB-mHD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="18B-2y-JTv"/>
+                            <constraint firstItem="dw8-gk-Ob8" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="2cH-XZ-pc4"/>
+                            <constraint firstItem="Qk4-dB-mHD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="3bt-0X-T8E"/>
+                            <constraint firstItem="dw8-gk-Ob8" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="5FH-iH-HXr"/>
+                            <constraint firstItem="nue-Zu-xOt" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="De7-fi-nf1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BlB-Kp-rct" secondAttribute="bottom" constant="32" id="GdY-Qg-Wmd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BlB-Kp-rct" secondAttribute="trailing" constant="16" id="HUE-8b-48B"/>
+                            <constraint firstItem="BlB-Kp-rct" firstAttribute="top" secondItem="nue-Zu-xOt" secondAttribute="bottom" constant="16" id="Rdw-pi-luV"/>
+                            <constraint firstItem="nue-Zu-xOt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="URy-tz-6lf"/>
+                            <constraint firstAttribute="bottom" secondItem="dw8-gk-Ob8" secondAttribute="bottom" id="aIX-6l-lxN"/>
+                            <constraint firstItem="BlB-Kp-rct" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="gRb-cb-ayW"/>
+                            <constraint firstItem="dw8-gk-Ob8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ivg-gi-6de"/>
+                            <constraint firstItem="nue-Zu-xOt" firstAttribute="top" secondItem="Qk4-dB-mHD" secondAttribute="bottom" constant="16" id="qs0-iC-8vq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="animationView" destination="dw8-gk-Ob8" id="v0l-bw-v7Z"/>
+                        <outlet property="collectionView" destination="BlB-Kp-rct" id="ZP4-Mh-lcd"/>
+                        <outlet property="searchBar" destination="nue-Zu-xOt" id="eOe-kf-GRV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="18.840579710144929" y="75.669642857142847"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
