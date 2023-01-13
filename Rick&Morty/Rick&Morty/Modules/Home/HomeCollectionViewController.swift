@@ -32,9 +32,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let vc = UIStoryboard.init(name: "CharacterDetailViewController", bundle: Bundle.main).instantiateViewController(withIdentifier: "CharacterDetailViewController") as? CharacterDetailViewController else { return }
-        vc.modalPresentationStyle = .pageSheet
         vc.character = viewModel.characterListFiltered[indexPath.row]
-        self.present(vc, animated: true)
+        saveIndexPathCache(with: indexPath)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -58,4 +58,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
         }
     }
+}
+
+extension HomeViewController {
+  func saveIndexPathCache(with indexPath: IndexPath) {
+    let defaults = UserDefaults.standard
+        defaults.set(indexPath.row, forKey: "selectedIndexPathRow")
+        defaults.set(indexPath.section, forKey: "selectedIndexPathSection")
+  }
 }

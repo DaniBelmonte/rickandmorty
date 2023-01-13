@@ -28,6 +28,10 @@ class HomeViewController: UIViewController {
         getCharacters()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        scrollCollectionToSpecificItem()
+    }
+
     // MARK: - Selectors
     @objc func dismissKeyboard() {
         view.endEditing(true)
@@ -67,6 +71,18 @@ class HomeViewController: UIViewController {
         let alert = UIAlertController(title: "Error", message: "Has an issue in api call", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+
+    func scrollCollectionToSpecificItem() {
+        let defaults = UserDefaults.standard
+        if defaults.integer(forKey: "selectedIndexPathRow") != 0 {
+            let row = defaults.integer(forKey: "selectedIndexPathRow")
+            let section = defaults.integer(forKey: "selectedIndexPathSection")
+            let indexPath = IndexPath(row: row, section: section)
+            collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
+        }
+        defaults.removeObject(forKey: "selectedIndexPathRow")
+        defaults.removeObject(forKey: "selectedIndexPathSection")
     }
 
     func filterSearchbarText() {

@@ -12,40 +12,45 @@ enum ApiResult {
     case failure
 }
 
-enum ApiResultCharacter {
-    case success(CharacterList)
-    case failure(String)
+enum ApiError: Error {
+    case invalidUrl
+    case invalidResponse
+    case invalidData
 }
 
-class NetworkService  {
+class NetworkService {
     static let shared = NetworkService()
 
-    func getCharacters(page: Int, completion: @escaping(ApiResultCharacter) -> Void) {
+    func getCharacters(page: Int, completion: @escaping (Result<CharacterList, Error>) -> Void) {
         let urlString = "https://rickandmortyapi.com/api/character?page=\(page)"
-        if let url = URL(string: urlString) {
-            URLSession.shared.dataTask(with: url) {data, response, error in
-
-                if let httpResponse = response as? HTTPURLResponse{
-                    if httpResponse.statusCode == 200 {
-                        if error != nil{
-                            completion(.failure("Error \(String(describing: error))"))
-                        }
-                        if let data = data {
-                            let decoder = JSONDecoder()
-                          do {
-                                let json: CharacterList = try decoder.decode(CharacterList.self, from: data)
-                                completion(.success(json))
-                            } catch let error {
-                                completion(.failure(error.localizedDescription))
-                            }
-                        } else {
-                          completion(.failure("Error data"))
-                        }
-                    } else if (400..<500).contains(httpResponse.statusCode) {
-                        completion(.failure("\(httpResponse.statusCode)"))
-                    }
-                }
-            }.resume()
+        guard let url = URL(string: urlString) else {
+            completion(.failure(ApiError.invalidUrl))
+            return
         }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let httpResponse = response as? HTTPURLResponse, (200..<300).contains(httpResponse.statusCode) else {
+                completion(.failure(ApiError.invalidResponse))
+                return
+            }
+
+            guard let data = data else {
+                completion(.failure(ApiError.invalidData))
+                return
+            }
+
+            do {
+                let decoder = JSONDecoder()
+                let characters = try decoder.decode(CharacterList.self, from: data)
+                completion(.success(characters))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
     }
 }
