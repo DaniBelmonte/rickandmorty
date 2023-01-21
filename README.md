@@ -16,6 +16,15 @@ Rick and Morty app uses Api from them, recollect all characters and they details
 Api -> https://rickandmortyapi.com/
 
 Libraries:
+<pre>
+import AlamofireImage
+import Toast
+import Lottie
+</pre>
+
 - Alamofire Image https://github.com/Alamofire/AlamofireImage
 - Toast https://github.com/scalessec/Toast-Swift
 - Lottie https://github.com/airbnb/lottie-ios
+
+
+
